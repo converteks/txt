@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konversi Teks</title>
+    <style>
+        body {
+            background-color: #777777; /* Warna abu-abu tua */
+            text-align: center; /* Membuat teks menjadi tengah */
+            padding-top: 100px; /* Memberikan jarak atas agar teks di tengah layar */
+        }
+
+        h1 {
+            color: #ffffff; /* Warna teks putih */
+        }
+
+        label {
+            color: #ffffff; /* Warna teks label putih */
+        }
+
+        #teks-input {
+            width: 300px; /* Lebar input */
+        }
+
+        button {
+            background-color: #333333; /* Warna tombol abu-abu gelap */
+            color: #ffffff; /* Warna teks tombol putih */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555555; /* Warna tombol saat dihover */
+        }
+
+        #teks-output {
+            color: #ffffff; /* Warna teks output putih */
+            margin-top: 20px; /* Jarak atas output dari tombol */
+        }
+
+        /* Tambahkan media query untuk mengatur lebar input di mode mobile */
+        @media (max-width: 768px) {
+            #teks-input {
+                width: 100%;
+            }
+        }
+
+        /* CSS untuk membuat tombol "Salin" tengah */
+        #salin-button {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Konversi Teks 0.21</h1>
+    <input type="text" id="teks-input">
+    <button onclick="konversiTeks()">Konversi</button>
+    <p id="teks-output"></p>
+    <button id="salin-button" style="display: none;" onclick="salinTeks()">Salin</button>
+    <a href="https://www.contohdonasi.com" id="donasi-link" style="font-weight: bold;">Donasi</a>
+
+    <script>
+        var kamus = {
+            'a': 'z1',
+            'b': 'y2',
+            'c': 'x3',
+            'd': 'w4',
+            'e': 'v5',
+            'f': 'u6',
+            'g': 't7',
+            'h': 's8',
+            'i': 'r9',
+            'j': 'q0',
+            'k': 'p1',
+            'l': 'o2',
+            'm': 'n3',
+            'n': 'm4',
+            'o': 'l5',
+            'p': 'k6',
+            'q': 'j7',
+            'r': 'i8',
+            's': 'h9',
+            't': 'g0',
+            'u': 'f1',
+            'v': 'e2',
+            'w': 'd3',
+            'x': 'c4',
+            'y': 'b5',
+            'z': 'a6',
+            'A': 'Z7',
+            'B': 'Y8',
+            'C': 'X9',
+            'D': 'W0',
+            'E': 'V1',
+            'F': 'U2',
+            'G': 'T3',
+            'H': 'S4',
+            'I': 'R5',
+            'J': 'Q6',
+            'K': 'P7',
+            'L': 'O8',
+            'M': 'N9',
+            'N': 'M0',
+            'O': 'L1',
+            'P': 'K2',
+            'Q': 'J3',
+            'R': 'I4',
+            'S': 'H5',
+            'T': 'G6',
+            'U': 'F7',
+            'V': 'E8',
+            'W': 'D9',
+            'X': 'C0',
+            'Y': 'B1',
+            'Z': 'A2'
+        };
+
+        function ubahTeks(teks) {
+            var teksHasil = "";
+            for (var i = 0; i < teks.length; i++) {
+                var huruf = teks[i];
+                if (huruf in kamus) {
+                    teksHasil += kamus[huruf];
+                } else {
+                    teksHasil += huruf;
+                }
+            }
+            return teksHasil;
+        }
+
+        function konversiTeks() {
+            var teksInput = document.getElementById("teks-input").value;
+            var teksOutput = ubahTeks(teksInput);
+            var teksOutputElement = document.getElementById("teks-output");
+            var salinButton = document.getElementById("salin-button");
+
+            teksOutputElement.textContent = teksOutput;
+            salinButton.style.display = "block";
+        }
+
+        function salinTeks() {
+            var teksOutput = document.getElementById("teks-output").textContent;
+            var tempInput = document.createElement("input");
+            tempInput.value = teksOutput;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Teks hasil konversi telah disalin ke clipboard.");
+        }
+    </script>
+</body>
+</html>
